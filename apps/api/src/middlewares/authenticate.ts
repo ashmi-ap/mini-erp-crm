@@ -34,6 +34,9 @@ export const authenticate = (req: Request, _res: Response, next: NextFunction) =
       role: decoded.role as Role,
     };
 
+    (_res as Response & { locals: { authUserId?: string; authRole?: Role } }).locals.authUserId = decoded.userId;
+    (_res as Response & { locals: { authUserId?: string; authRole?: Role } }).locals.authRole = decoded.role as Role;
+
     next();
   } catch (error) {
     if (error instanceof TokenExpiredError || error instanceof JsonWebTokenError) {
