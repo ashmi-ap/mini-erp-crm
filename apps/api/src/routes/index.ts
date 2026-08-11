@@ -1,6 +1,9 @@
 import { Router } from 'express';
 
 import { prisma } from '../db/prisma';
+import { authRouter } from '../modules/auth/auth.routes';
+import { customerRouter } from '../modules/customers/customer.routes';
+import { productRouter } from '../modules/products/product.routes';
 
 export const apiRouter = Router();
 
@@ -22,4 +25,8 @@ apiRouter.get('/health', async (_req, res) => {
     });
   }
 });
+
+apiRouter.use('/auth', authRouter);
+apiRouter.use('/customers', customerRouter);
+apiRouter.use('/products', productRouter);
 

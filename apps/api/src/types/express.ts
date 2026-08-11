@@ -1,0 +1,12 @@
+export {};
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: {
+        userId: string;
+        role: import('../constants/domain').Role;
+      };
+    }
+  }
+}
